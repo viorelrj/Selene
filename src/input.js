@@ -17,23 +17,20 @@ class Input extends Component {
 	}
 
 	handleClick() {
-		console.log(this.state.text)
-		this.props.updateKey(this.state.text)
+		this.props.response(this.state.text)
 	}
 
   render() {
-
     return (
       <div>
-			<input
-				type='text'
-				value={this.state.text}
-				onChange={e => this.handleChange(e.target.value)}
-				onBlur={this.handleBlur}
-			/>
-			<button
-				onClick={this.handleClick}
-			>Update Key</button>
+				<input
+					type='text'
+					value={this.state.text}
+					onChange={e => this.handleChange(e.target.value)}
+				/>
+				<button
+					onClick={this.handleClick}
+				>{this.props.text}</button>
 			</div>
     );
   }
