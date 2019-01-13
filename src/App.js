@@ -1,5 +1,12 @@
-import React, { Component } from 'react';
-import Input from './input.js';
+import './scss/main.scss'
+
+import React, { Component } from 'react'
+
+import Card from './components/commons/card.js'
+import Input from './components/commons/input.js'
+
+
+
 
 class App extends Component {
   constructor(props) {
@@ -102,22 +109,20 @@ class App extends Component {
     console.log(JSON.parse(localStorage.getItem('state')))
   }
 
-  render() {
+  render () {
     return (
-      <div>
-        <Input
-          text='Update Access Key'
-          response={this.updateAccessKey}
+      <div className="">
+        <Card
+          title="What is your access key?"
+          content={
+            <Input
+              response={this.updateAccessKey}
+              text="Submit"
+            />
+          }
         />
-        <Input
-          text='Update Secret Key'
-          response={this.updateSecretKey}
-        />
-        <button onClick={this.redirect.bind(this)}>Get Access code</button>
-        <button onClick={this.getToken.bind(this)}>Get Token</button>
-        <button onClick={this.debug.bind(this)}>Debug</button>
       </div>
-    );
+    )
   }
 }
 
