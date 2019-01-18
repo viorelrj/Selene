@@ -22,13 +22,15 @@ class Input extends Component {
 
   render() {
     return (
-      <div>
+      <div className="input-group">
 				<input
 					type='text'
+					className="input-group__field"
 					value={this.state.text}
 					onChange={e => this.handleChange(e.target.value)}
 				/>
 				<button
+					className="input-group__button"
 					onClick={this.handleClick}
 				>{this.props.text}</button>
 			</div>

@@ -1,13 +1,13 @@
 body {
   background-color: $color-white;
+  font-family: "heebo", sans-serif;
+  color: $color-grey;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  width: 100vw;
-  height: 100vh;
-
   font-family: $font-main;
   font-size: 16px;
 }
+

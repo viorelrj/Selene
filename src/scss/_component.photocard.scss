@@ -1,0 +1,16 @@
+.c-photocard {
+    width: 100%;
+    display: inline-block;
+
+    &__img {
+        max-width: 100%;
+        filter: contrast(80%) saturate(90%);
+    }
+
+    &__text {
+        margin-top: 20px;
+        font-family: "indie flower";
+        font-size: 1.7rem;
+        text-align: center;
+    }
+}

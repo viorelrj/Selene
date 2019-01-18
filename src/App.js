@@ -1,10 +1,6 @@
 import './scss/main.scss'
 
 import React, { Component } from 'react'
-
-import Card from './components/commons/card.js'
-import Input from './components/commons/input.js'
-
 import {accessKey, secretKey} from './secrets.js'
 
 class App extends Component {
@@ -96,16 +92,9 @@ class App extends Component {
 
   render () {
     return (
-      <div className="">
-        <Card
-          title="What is your access key?"
-          content={
-            <Input
-              response={this.updateAccessKey}
-              text="Submit"
-            />
-          }
-        />
+      <div>
+        
+         
       </div>
     )
   }
