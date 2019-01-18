@@ -5,31 +5,17 @@ import React, { Component } from 'react'
 import Card from './components/commons/card.js'
 import Input from './components/commons/input.js'
 
-
-
+import {accessKey, secretKey} from './secrets.js'
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      accessKey: '',
-      secretKey: '',
       accessToken: '',
       refreshToken: '',
       tokenType: ''
     }
-
-    this.updateAccessKey = this.updateAccessKey.bind(this)
-    this.updateSecretKey = this.updateSecretKey.bind(this)
     this.oAuth = this.oAuth.bind(this)
-  }
-
-  updateAccessKey(newAccessKey) {
-    this.setState((state = this.state) => state.accessKey = newAccessKey)
-  }
-
-  updateSecretKey(newSecretKey) {
-    this.setState((state = this.state) => state.secretKey = newSecretKey)
   }
 
   saveStateInStorage() {
@@ -48,7 +34,7 @@ class App extends Component {
   unloggedRequest() {
     fetch('https://api.unsplash.com/photos/', {
       headers: {
-        'Authorization': 'Client-ID ' + this.state.accessKey
+        'Authorization': 'Client-ID ' + accessKey
       }
     })
     .then((res) => res.json())
@@ -68,8 +54,7 @@ class App extends Component {
   }
 
   redirect() {
-    let redirectURI = 'https://unsplash.com/oauth/authorize?client_id='+ this.state.accessKey +'&redirect_uri=http%3A%2F%2Flocalhost%3A3000&response_type=code&scope=public+read_user+write_user+read_photos+write_photos+write_likes+write_followers+read_collections+write_collections'
-
+    let redirectURI = 'https://unsplash.com/oauth/authorize?client_id='+ accessKey +'&redirect_uri=http%3A%2F%2Flocalhost%3A3000&response_type=code&scope=public+read_user+write_user+read_photos+write_photos+write_likes+write_followers+read_collections+write_collections'
     window.location = redirectURI
   }
 
@@ -86,8 +71,8 @@ class App extends Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        'client_id': this.state.accessKey,
-        'client_secret': this.state.secretKey,
+        'client_id': accessKey,
+        'client_secret': secretKey,
         'redirect_uri': 'http://localhost:3000',
         'code': this.getResponseCode(),
         'grant_type': 'authorization_code'
