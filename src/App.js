@@ -11,7 +11,6 @@ class App extends Component {
 			refreshToken: '',
 			tokenType: ''
 		}
-		this.oAuth = this.oAuth.bind(this)
 	}
 
 	saveStateInStorage() {
