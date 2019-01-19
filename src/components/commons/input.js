@@ -27,12 +27,13 @@ class Input extends Component {
 					type='text'
 					className="input-group__field"
 					value={this.state.text}
+					placeholder={this.props.placeholder}
 					onChange={e => this.handleChange(e.target.value)}
 				/>
 				<button
 					className="input-group__button"
 					onClick={this.handleClick}
-				>{this.props.text}</button>
+				>{this.props.buttonText}</button>
 			</div>
     );
   }

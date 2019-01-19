@@ -21,13 +21,14 @@ class App extends Component {
 	}
 
 	componentDidMount() {
-		if (this.getResponseCode()) {
-			window.location = 'http://localhost:3000'
-		}
-
 		const state = localStorage.getItem('state')
 		if (state) {
 			this.setState(JSON.parse(state))
+			return
+		} else {
+			if (this.getResponseCode()) {
+				this.getToken.bind(this)()
+			}
 		}
 	}
 
@@ -51,9 +52,11 @@ class App extends Component {
 	}
 
 	getToken() {
-		if (this.getResponseCode()) {
+		if (!this.getResponseCode()) {
 			return false;
 		}
+
+		console.log('Got the response code, getting the token')
 
 		fetch('https://unsplash.com/oauth/token', {
 			method: 'POST',
@@ -71,7 +74,23 @@ class App extends Component {
 		})
 		.then(res => res.json())
 		.then(res => res)
-		.then(res => localStorage.setItem('state', JSON.stringify(res)))
+		.then(res => {
+			this.setState(res)
+			return localStorage.setItem('state', JSON.stringify(res))
+		})
+	}
+
+	search () {
+		console.log(this.state.access_token)
+		fetch('https://api.unsplash.com/me', {
+			headers: {
+				'Accept-Version': 'v1',
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + this.state.access_token
+			}
+		})
+		.then(res => res.json())
+		.then(res => console.log(res))
 	}
 
 	debug () {
@@ -82,8 +101,9 @@ class App extends Component {
 	render () {
 		return (
 			<div>
-				<button onClick={this.redirect.bind(this)}>Log in</button>
-				<button onClick={this.debug.bind(this)}>Debug</button>
+				<button onClick={this.redirect.bind(this)}>Log In</button>
+				<button onClick={this.search.bind(this)}>fetch</button>
+				<button onClick={this.debug.bind(this)}>debug</button>
 			</div>
 		)
 	}
