@@ -41,19 +41,6 @@ class App extends Component {
 		.then((res) => res.json())
 	}
 
-	oAuth() {
-		// fetch('https://unsplash.com/oauth/authorize', {
-		//   headers: {
-		//     'client_id': this.state.accessKey,
-		//     'redirect_uri': 'htpp://localhost:3000',
-		//     'response_type': 'code',
-		//     'grant_type': 'public',
-		//     'Accept-Version': 'v1'
-		//   }
-		// })
-		// .then((res) => res)
-	}
-
 	redirect() {
 		let redirectURI = 'https://unsplash.com/oauth/authorize?client_id='+ accessKey +'&redirect_uri=http://localhost:3000&response_type=code&scope=public+read_user+write_user+read_photos+write_photos+write_likes+write_followers+read_collections+write_collections'
 		window.location = redirectURI
