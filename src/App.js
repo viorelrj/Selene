@@ -3,13 +3,15 @@ import './scss/main.scss'
 import React, { Component } from 'react'
 import {accessKey, secretKey} from './secrets.js'
 
+import Card from './components/commons/card'
+
+import { createUrl } from './utilities'
+
 class App extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			accessToken: '',
-			refreshToken: '',
-			tokenType: ''
+			logged: false
 		}
 	}
 
@@ -73,15 +75,14 @@ class App extends Component {
 			})
 		})
 		.then(res => res.json())
-		.then(res => res)
+		.then(res => res.logged = true)
 		.then(res => {
 			this.setState(res)
 			return localStorage.setItem('state', JSON.stringify(res))
 		})
 	}
 
-	search () {
-		console.log(this.state.access_token)
+	getUserInfo () {
 		fetch('https://api.unsplash.com/me', {
 			headers: {
 				'Accept-Version': 'v1',
@@ -90,20 +91,33 @@ class App extends Component {
 			}
 		})
 		.then(res => res.json())
-		.then(res => console.log(res))
 	}
 
-	debug () {
-		console.log(this.state)
-		console.log(JSON.parse(localStorage.getItem('state')))
+	
+
+	searchPhoto (query) {
+		const url = createUrl('search/photos', {query: query})
+
+		fetch(url, {
+			headers: {
+				'Accept-Version': 'v1',
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + this.state.access_token,
+			}
+		})
+		.then(res => res.json())
+		.then(res => console.log(res))
 	}
 
 	render () {
 		return (
 			<div>
-				<button onClick={this.redirect.bind(this)}>Log In</button>
-				<button onClick={this.search.bind(this)}>fetch</button>
-				<button onClick={this.debug.bind(this)}>debug</button>
+				<Card 
+					title='Please Log in'
+					content={
+						<button onClick={this.redirect.bind(this)}>Login</button>
+					}
+				/>
 			</div>
 		)
 	}
