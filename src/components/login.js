@@ -1,16 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getToken } from '../redux/actions'
+import { getLoginCode } from '../redux/actions'
 
 
 function mapDispatchToProps(dispatch) {
   return {
-    getToken: () => dispatch(getToken())
+    getLoginCode: () => dispatch(getLoginCode())
   }
 }
 
-const ConnectedLogin = ({getToken}) => (
-  <button onClick={getToken}>Log in</button>
+const ConnectedLogin = ({getLoginCode}) => (
+  <button onClick={getLoginCode}>Log in</button>
 )
 
 const Login = connect(null, mapDispatchToProps)(ConnectedLogin)

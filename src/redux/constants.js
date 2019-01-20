@@ -1,3 +1,4 @@
-export const SAVE_NAME = 'SAVE_NAME'
-export const GET_TOKEN = 'GET_TOKEN'
+export const GET_LOGIN_CODE = 'GET_LOGIN_CODE'
 export const SEARCH_PHOTO = 'SEARCH_PHOTO'
+export const SILENT_LOGIN = 'SILENT_LOGIN'
+export const DEBUG = 'DEBUG'
