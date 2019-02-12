@@ -21,7 +21,7 @@ create a file named `secrets.js`, where you should put two lines:
 
 ``` javascript
 export const accessKey = '[your access key]' 
-export const secretsKey = '[your secret key]'
+export const secretKey = '[your secret key]'
 ```
 
 After thatn your terminal, in the root folder of the project, do a `npm install`\
