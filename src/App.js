@@ -25,8 +25,7 @@ class ConnectedApp extends Component {
 	render () {
 		return (
 			<div>
-				<Login />
-				<button onClick={this.props.debug}>Debug</button>
+				
 			</div>
 		)
 	}
